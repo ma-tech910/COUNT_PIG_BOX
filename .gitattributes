@@ -1,0 +1,2 @@
+# VBE でインポートする .bas は Shift-JIS + CRLF のまま保つ（改行・文字コードを変換させない）
+*.bas -text
