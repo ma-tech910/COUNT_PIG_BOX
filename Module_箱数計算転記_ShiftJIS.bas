@@ -757,7 +757,7 @@ Private Function AddInitial1SetTable(ByVal ws As Worksheet, ByVal sectionTitle A
     ' 初期値1行（要件台帳 REQ-010・Q-04。カタ・ヒレは仮決めの空欄）
     dataArr(1, 1) = "1": dataArr(1, 2) = "1頭ｾｯﾄ": dataArr(1, 3) = "カット内容": dataArr(1, 4) = "全"
     dataArr(1, 5) = "頭数": dataArr(1, 6) = "頭数": dataArr(1, 7) = "斜線": dataArr(1, 8) = "頭数"
-    dataArr(1, 9) = "": dataArr(1, 10) = "": dataArr(1, 11) = "全農の1頭ｾｯﾄ（2026/09/11 藤田様）。カタ・ヒレは仮決め"
+    dataArr(1, 9) = "": dataArr(1, 10) = "": dataArr(1, 11) = "全農の1頭ｾｯﾄ（2026/09/11）。カタ・ヒレは仮決め"
 
     headArr(1, 1) = "No": headArr(1, 2) = "キーワード": headArr(1, 3) = "対象列": headArr(1, 4) = "対象の箱"
     headArr(1, 5) = "ウデ": headArr(1, 6) = "モモ": headArr(1, 7) = "ロース": headArr(1, 8) = "バラ"
@@ -797,7 +797,7 @@ End Function
 '
 '  紙の計算フォーマットでは各列の数字が赤丸・青丸で囲まれ、これがシートの有無を
 '  表す先方の一番の要望（要件台帳 REQ-014）。図形の丸は使わず、数字の前に記号を
-'  付ける方式にした（林さん決定）。記号は「1頭セット条件」と同じくマスタで持ち、
+'  付ける方式にした。記号は「1頭セット条件」と同じくマスタで持ち、
 '  先方がマクロを触らずに変えられるようにする。
 ' ===========================================================================
 
@@ -1013,7 +1013,7 @@ Private Function AddInitialSheetMarkTable(ByVal ws As Worksheet, ByVal sectionTi
 
     On Error GoTo Failed
 
-    ' 既定の3行（要件台帳 REQ-014・2026-09-28 林さん決定）
+    ' 既定の3行（要件台帳 REQ-014・2026-09-28）
     dataArr(1, 1) = "シートなし": dataArr(1, 2) = "●": dataArr(1, 3) = "紙の赤丸。会社・全農・黒豚とも"
     dataArr(2, 1) = "全農のシートあり": dataArr(2, 2) = "○": dataArr(2, 3) = "紙の青丸"
     dataArr(3, 1) = "会社のシートあり": dataArr(3, 2) = "": dataArr(3, 3) = "紙では印なし。黒豚のシートありもここに従う（仮決め）"
@@ -1329,7 +1329,7 @@ Private Sub FillParts(ByRef w As TWork, ByVal excluded As String, _
             w.Kata = n
             If InStr(1, NormKey(w.WorkName), NormKey(KW_NO6_1)) > 0 And _
                InStr(1, NormKey(w.WorkName), NormKey(KW_NO6_2)) > 0 Then
-                ' 出力先はヒレ行で確定（2026-09-28 藤田様回答・要件台帳 Q-01）。警告は出さない
+                ' 出力先はヒレ行で確定（2026-09-28・要件台帳 Q-01）。警告は出さない
                 w.Hire = "No.6" & vbLf & n
             Else
                 w.Hire = n
@@ -1671,7 +1671,7 @@ Private Function MarkedValue(ByVal raw As Variant, ByVal mark As String) As Vari
         ElseIf Left$(CStr(raw), Len(NO6_PREFIX)) = NO6_PREFIX Then
             numPart = Mid$(CStr(raw), Len(NO6_PREFIX) + 1)
             If numPart = "0" Then
-                MarkedValue = raw       ' 0 には印を付けない（2026-09-28 林さん決定）
+                MarkedValue = raw       ' 0 には印を付けない（2026-09-28）
             Else
                 MarkedValue = NO6_PREFIX & mark & numPart
             End If
@@ -1679,7 +1679,7 @@ Private Function MarkedValue(ByVal raw As Variant, ByVal mark As String) As Vari
             MarkedValue = raw           ' 想定外の文字列はそのまま（安全側）
         End If
     ElseIf raw = 0 Then
-        MarkedValue = raw               ' 0 には印を付けない（頭数・部位とも。2026-09-28 林さん決定）
+        MarkedValue = raw               ' 0 には印を付けない（頭数・部位とも。2026-09-28）
     Else
         MarkedValue = mark & CStr(raw)
     End If
